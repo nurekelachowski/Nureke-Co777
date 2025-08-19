@@ -1,0 +1,247 @@
+# Nureke-Co777
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Нурхан — IT специалист</title>
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --text: #f5f5f5;
+      --muted: #b0b0b0;
+      --gold: #d4af37;
+      --gold-2: #e6c766;
+      --card: #141414;
+    }
+    body.light {
+      --bg: #ffffff;
+      --text: #111111;
+      --muted: #555555;
+      --gold: #d4af37;
+      --gold-2: #c9a832;
+      --card: #f2f2f2;
+    }
+    body {
+      margin:0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1,h2,h3 { margin:0; }
+    h1 { font-size: 28px; color: var(--gold); }
+    h2 { font-size: 22px; margin-bottom:12px; color: var(--gold); }
+    h3 { font-size: 18px; }
+    .container { width: 92%; max-width: 800px; margin: 0 auto; padding: 20px 0; }
+    header { text-align:center; padding:20px 0; }
+    .lang-switch { display:flex; justify-content:center; gap:10px; margin:12px 0; flex-wrap: wrap; }
+    .btn { background: var(--gold); color:#111; padding:8px 14px; border-radius:8px; font-weight:600; border:none; cursor:pointer; }
+    .btn:hover { background: var(--gold-2); }
+    /* услуги */
+    .services-list { display:flex; flex-direction:column; gap:16px; }
+    .service-card {
+      display:flex; justify-content:space-between; align-items:center;
+      background: var(--card);
+      border:1px solid var(--gold);
+      border-radius:14px;
+      padding:16px 20px;
+      box-shadow:0 4px 12px rgba(212,175,55,0.15);
+      transition:0.2s;
+    }
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow:0 6px 18px rgba(212,175,55,0.3);
+    }
+    .service-card h3 { color:var(--gold); margin-bottom:4px; }
+    .service-card p { margin:0; font-size:14px; color:var(--muted); }
+    .price { font-weight:700; font-size:18px; color:var(--gold-2); white-space:nowrap; }
+    /* отзывы */
+    .reviews { display:flex; flex-direction:column; gap:14px; }
+    .review {
+      background: var(--card);
+      border-left:4px solid var(--gold);
+      border-radius:10px;
+      padding:14px 16px;
+      font-size:15px;
+    }
+    .review strong { color:var(--gold); }
+    /* контакты */
+    .contacts { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    .chip {
+      display:flex; align-items:center; gap:8px;
+      padding:10px 14px;
+      background: var(--card);
+      border:1px solid var(--gold);
+      border-radius:12px;
+      font-weight:600;
+      color:var(--gold);
+      text-decoration:none;
+    }
+    footer { text-align:center; padding:20px 0; font-size:14px; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 id="title">Нурхан — IT специалист</h1>
+      <p id="subtitle">Создание сайтов, настройка устройств, техподдержка</p>
+      <div class="lang-switch">
+        <button class="btn" onclick="setLang('ru')">RU</button>
+        <button class="btn" onclick="setLang('kz')">KZ</button>
+        <button class="btn" onclick="setLang('en')">EN</button>
+        <button class="btn" id="themeToggle">🌗 Тема</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="services">
+      <h2 id="servicesTitle">💼 Услуги</h2>
+      <div class="services-list" id="servicesList"></div>
+    </section>
+
+    <section id="reviews" style="margin-top:40px;">
+      <h2 id="reviewsTitle">⭐ Отзывы клиентов</h2>
+      <div class="reviews" id="reviewsList"></div>
+    </section>
+
+    <section id="contacts" style="margin-top:40px;">
+      <h2 id="contactsTitle">📱 Контакты</h2>
+      <div class="contacts">
+        <a href="tel:+7750576263" class="chip" id="phone">📞 +7 750 576 263</a>
+        <a href="https://wa.me/77750576263" class="chip">💬 WhatsApp</a>
+        <a href="https://t.me/nurekelachowski" class="chip">📲 Telegram</a>
+        <a href="mailto:nurkhangabdolla7@icloud.com" class="chip">📧 Email</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 <span id="footerName">Нурхан</span>. <span id="footerRights">Все права защищены.</span>
+  </footer>
+
+  <script>
+    // ТЕКСТЫ НА РАЗНЫХ ЯЗЫКАХ
+    const content = {
+      ru: {
+        title: "Нурхан — IT специалист",
+        subtitle: "Создание сайтов, настройка устройств, техподдержка",
+        servicesTitle: "💼 Услуги",
+        services: [
+          {name:"Создание сайта",desc:"Адаптивный, современный, с переключением тем и языков.",price:"4000 ₸"},
+          {name:"Настройка iPhone / iPad",desc:"Установка, оптимизация, помощь с Apple ID.",price:"3500 ₸"},
+          {name:"Настройка Android",desc:"Чистка, ускорение, настройка приложений.",price:"3000 ₸"},
+          {name:"Установка приложений",desc:"VPN, мессенджеры, соцсети — всё что нужно.",price:"2000 ₸"},
+          {name:"Оптимизация телефона",desc:"Удаление мусора, ускорение, безопасность.",price:"2500 ₸"},
+          {name:"Консультация",desc:"Помощь в выборе устройств и решений.",price:"1500 ₸"},
+        ],
+        reviewsTitle:"⭐ Отзывы клиентов",
+        reviews:[
+          {name:"Айдар",text:"Очень помог с телефоном, всё работает идеально!"},
+          {name:"Марина",text:"Сайт сделал быстро и красиво, довольна на 100%."},
+          {name:"Ержан",text:"Поддержка на уровне, объяснил всё доступно!"},
+        ],
+        contactsTitle:"📱 Контакты",
+        footerName:"Нурхан",
+        footerRights:"Все права защищены."
+      },
+      kz: {
+        title: "Нұрхан — IT маман",
+        subtitle: "Веб-сайт жасау, құрылғыларды баптау, техникалық қолдау",
+        servicesTitle: "💼 Қызметтер",
+        services: [
+          {name:"Веб-сайт жасау",desc:"Адаптивті, заманауи, тақырып пен тілді ауыстыру мүмкіндігі бар.",price:"4000 ₸"},
+          {name:"iPhone / iPad баптау",desc:"Орнату, оңтайландыру, Apple ID көмегі.",price:"3500 ₸"},
+          {name:"Android баптау",desc:"Тазалау, жеделдету, қосымшаларды орнату.",price:"3000 ₸"},
+          {name:"Қосымшалар орнату",desc:"VPN, мессенджерлер, әлеуметтік желілер.",price:"2000 ₸"},
+          {name:"Телефонды оңтайландыру",desc:"Қоқысты жою, жеделдету, қауіпсіздік.",price:"2500 ₸"},
+          {name:"Кеңес беру",desc:"Құрылғылар мен шешімдерді таңдауға көмек.",price:"1500 ₸"},
+        ],
+        reviewsTitle:"⭐ Пікірлер",
+        reviews:[
+          {name:"Айдар",text:"Телефонмен көмектесті, бәрі тамаша істейді!"},
+          {name:"Марина",text:"Сайтты тез әрі әдемі жасап берді, қатты ұнады."},
+          {name:"Ержан",text:"Қолдауы жоғары деңгейде, бәрін түсінікті түсіндірді!"},
+        ],
+        contactsTitle:"📱 Байланыс",
+        footerName:"Нұрхан",
+        footerRights:"Барлық құқықтар қорғалған."
+      },
+      en: {
+        title: "Nurhan — IT Specialist",
+        subtitle: "Website development, device setup, technical support",
+        servicesTitle: "💼 Services",
+        services: [
+          {name:"Website creation",desc:"Responsive, modern, with theme & language switch.",price:"4000 ₸"},
+          {name:"iPhone / iPad setup",desc:"Installation, optimization, Apple ID help.",price:"3500 ₸"},
+          {name:"Android setup",desc:"Cleaning, speeding up, apps installation.",price:"3000 ₸"},
+          {name:"Apps installation",desc:"VPN, messengers, social networks — everything you need.",price:"2000 ₸"},
+          {name:"Phone optimization",desc:"Junk removal, speed up, security.",price:"2500 ₸"},
+          {name:"Consultation",desc:"Help in choosing devices and solutions.",price:"1500 ₸"},
+        ],
+        reviewsTitle:"⭐ Client Reviews",
+        reviews:[
+          {name:"Aidar",text:"Helped a lot with my phone, works perfectly!"},
+          {name:"Marina",text:"Made the site fast and beautiful, very satisfied."},
+          {name:"Yerjan",text:"Support on top level, explained everything clearly!"},
+        ],
+        contactsTitle:"📱 Contacts",
+        footerName:"Nurhan",
+        footerRights:"All rights reserved."
+      }
+    };
+
+    // Смена языка
+    function setLang(lang) {
+      const c = content[lang];
+      document.getElementById("title").textContent = c.title;
+      document.getElementById("subtitle").textContent = c.subtitle;
+      document.getElementById("servicesTitle").textContent = c.servicesTitle;
+      document.getElementById("reviewsTitle").textContent = c.reviewsTitle;
+      document.getElementById("contactsTitle").textContent = c.contactsTitle;
+      document.getElementById("footerName").textContent = c.footerName;
+      document.getElementById("footerRights").textContent = c.footerRights;
+
+      // услуги
+      const sList = document.getElementById("servicesList");
+      sList.innerHTML = "";
+      c.services.forEach(s => {
+        sList.innerHTML += `
+          <div class="service-card">
+            <div>
+              <h3>${s.name}</h3>
+              <p>${s.desc}</p>
+            </div>
+            <div class="price">${s.price}</div>
+          </div>`;
+      });
+
+      // отзывы
+      const rList = document.getElementById("reviewsList");
+      rList.innerHTML = "";
+      c.reviews.forEach(r => {
+        rList.innerHTML += `
+          <div class="review">
+            <p>★★★★★ — <strong>${r.name}</strong><br>${r.text}</p>
+          </div>`;
+      });
+    }
+
+    // переключение темы
+    const themeToggle = document.getElementById("themeToggle");
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("light");
+      if (document.body.classList.contains("light")) {
+        themeToggle.textContent = "🌞 Светлая";
+      } else {
+        themeToggle.textContent = "🌙 Тёмная";
+      }
+    });
+
+    // при загрузке — русский язык
+    setLang("ru");
+  </script>
+</body>
+</html>
